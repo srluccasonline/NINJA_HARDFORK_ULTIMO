@@ -7,12 +7,13 @@ import { RootState } from '../store/store';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { Mail, Lock, AlertCircle, Check } from 'lucide-react';
+import { VERSAO_MINIMA } from '../version';
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error, user } = useSelector((state: RootState) => state.auth);
@@ -40,12 +41,12 @@ export const Login: React.FC = () => {
         // OTIMIZAÇÃO: Não esperamos o 'getUserRole' aqui para evitar delay.
         // O App.tsx já tem um listener que atualiza a role em background assim que a sessão é detectada.
         // Definimos 'user' temporariamente para liberar o acesso imediato.
-        
+
         dispatch(setUser({
           user: { id: data.user.id, email: data.user.email || '', role: 'user' },
           session: data.session
         }));
-        
+
         // Redireciona imediatamente
         navigate('/');
       }
@@ -63,7 +64,7 @@ export const Login: React.FC = () => {
       </div>
 
       <div className="w-full max-w-md bg-dark-800/50 backdrop-blur-xl border border-dark-700 rounded-2xl shadow-2xl p-10 relative z-10">
-        
+
         {/* Header Limpo com Estilo Reflexivo e BR Laranja */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-black tracking-tighter select-none drop-shadow-sm">
@@ -80,11 +81,11 @@ export const Login: React.FC = () => {
         )}
 
         <form onSubmit={handleLogin} className="space-y-6">
-          <Input 
+          <Input
             id="email"
             name="email"
-            label="Email" 
-            type="email" 
+            label="Email"
+            type="email"
             autoComplete="email"
             placeholder="admin@ninjabr.com"
             value={email}
@@ -92,12 +93,12 @@ export const Login: React.FC = () => {
             icon={Mail}
             required
           />
-          
-          <Input 
+
+          <Input
             id="password"
             name="password"
-            label="Senha" 
-            type="password" 
+            label="Senha"
+            type="password"
             autoComplete="current-password"
             placeholder="••••••••"
             value={password}
@@ -108,29 +109,29 @@ export const Login: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <label className="flex items-center space-x-2 cursor-pointer group">
-                <div className="relative">
-                <input 
-                    type="checkbox" 
-                    className="peer sr-only" 
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
+              <div className="relative">
+                <input
+                  type="checkbox"
+                  className="peer sr-only"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
                 />
                 <div className="h-4 w-4 rounded border border-dark-600 bg-dark-800 transition-all peer-checked:bg-ninja-600 peer-checked:border-ninja-600 peer-focus:ring-2 peer-focus:ring-ninja-500/50 flex items-center justify-center">
-                    <Check className="h-3 w-3 text-white opacity-0 peer-checked:opacity-100" />
+                  <Check className="h-3 w-3 text-white opacity-0 peer-checked:opacity-100" />
                 </div>
-                </div>
-                <span className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors select-none">Lembrar de mim</span>
+              </div>
+              <span className="text-sm text-zinc-400 group-hover:text-zinc-300 transition-colors select-none">Lembrar de mim</span>
             </label>
-            
+
             <button type="button" className="text-sm text-ninja-500 hover:text-ninja-400 transition-colors font-medium">
-                Esqueceu a senha?
+              Esqueceu a senha?
             </button>
           </div>
 
           <div className="pt-2">
-            <Button 
-              type="submit" 
-              className="w-full" 
+            <Button
+              type="submit"
+              className="w-full"
               variant="primary"
               isLoading={loading}
             >
@@ -138,6 +139,12 @@ export const Login: React.FC = () => {
             </Button>
           </div>
         </form>
+
+        <div className="mt-8 pt-6 border-t border-dark-700/50 text-center">
+          <p className="text-[10px] text-zinc-500 font-bold tracking-[0.2em] uppercase opacity-40">
+            BUILD VERSION {VERSAO_MINIMA}
+          </p>
+        </div>
       </div>
     </div>
   );
