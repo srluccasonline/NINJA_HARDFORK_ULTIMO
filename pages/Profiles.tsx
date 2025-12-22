@@ -826,17 +826,21 @@ export const Profiles: React.FC = () => {
                                                 <p className="text-xs text-zinc-500 mb-4 truncate">{app.start_url}</p>
 
                                                 <div className="space-y-2 mb-4">
-                                                    <div className="flex items-center gap-2 text-xs text-zinc-400 bg-dark-900/50 p-2 rounded">
-                                                        <ShieldCheck className="h-3 w-3 text-emerald-500" />
-                                                        <span className="truncate">
-                                                            {proxy ? `${proxy.name} (${proxy.host})` : 'Sem Proxy'}
-                                                        </span>
-                                                    </div>
-                                                    {app.is_autofill_enabled && (
-                                                        <div className="flex items-center gap-2 text-xs text-zinc-400 bg-dark-900/50 p-2 rounded">
-                                                            <Zap className="h-3 w-3 text-ninja-500" />
-                                                            <span className="truncate">Autofill Ativo</span>
-                                                        </div>
+                                                    {isAdmin && (
+                                                        <>
+                                                            <div className="flex items-center gap-2 text-xs text-zinc-400 bg-dark-900/50 p-2 rounded">
+                                                                <ShieldCheck className="h-3 w-3 text-emerald-500" />
+                                                                <span className="truncate">
+                                                                    {proxy ? `${proxy.name} (${proxy.host})` : 'Sem Proxy'}
+                                                                </span>
+                                                            </div>
+                                                            {app.is_autofill_enabled && (
+                                                                <div className="flex items-center gap-2 text-xs text-zinc-400 bg-dark-900/50 p-2 rounded">
+                                                                    <Zap className="h-3 w-3 text-ninja-500" />
+                                                                    <span className="truncate">Autofill Ativo</span>
+                                                                </div>
+                                                            )}
+                                                        </>
                                                     )}
                                                     {!isActive && (
                                                         <div className="flex items-center gap-2 text-xs text-red-400 bg-red-500/10 p-2 rounded border border-red-500/20">
