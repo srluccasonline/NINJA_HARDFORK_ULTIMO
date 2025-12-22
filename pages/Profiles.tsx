@@ -763,8 +763,15 @@ export const Profiles: React.FC = () => {
                                     const isActive = app.is_active !== false;
 
                                     return (
-                                        <div key={app.id} className={`bg-dark-800 border border-dark-600 rounded-xl p-4 hover:border-ninja-500/50 transition-all group flex flex-col justify-between ${!isActive ? 'opacity-60 grayscale-[0.5]' : ''}`}>
-                                            <div>
+                                        <div key={app.id} className={`relative overflow-hidden bg-dark-800 border border-dark-600 rounded-xl p-4 hover:border-ninja-500/50 transition-all group flex flex-col justify-between min-h-[200px] ${!isActive ? 'opacity-60 grayscale-[0.5]' : ''}`}>
+                                            {/* Background Watermark */}
+                                            <img
+                                                src={`https://www.google.com/s2/favicons?domain=${new URL(app.start_url.startsWith('http') ? app.start_url : `https://${app.start_url}`).hostname}&sz=256`}
+                                                alt=""
+                                                className="absolute -bottom-10 -right-10 w-48 h-48 opacity-[0.03] grayscale rotate-12 pointer-events-none select-none transition-transform group-hover:scale-110 duration-700"
+                                            />
+
+                                            <div className="relative z-10">
                                                 <div className="flex items-start justify-between mb-3">
                                                     <div className={`p-2.5 rounded-lg transition-colors overflow-hidden flex items-center justify-center ${isRunning ? 'bg-emerald-500/10 text-emerald-500 animate-pulse' : 'bg-dark-700 group-hover:bg-ninja-600/10 group-hover:text-ninja-500'}`}>
                                                         <AppIcon url={app.start_url} isRunning={isRunning} />
