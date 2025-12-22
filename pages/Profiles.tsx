@@ -768,7 +768,7 @@ export const Profiles: React.FC = () => {
                                             <img
                                                 src={`https://www.google.com/s2/favicons?domain=${new URL(app.start_url.startsWith('http') ? app.start_url : `https://${app.start_url}`).hostname}&sz=256`}
                                                 alt=""
-                                                className="absolute -bottom-10 -right-10 w-48 h-48 opacity-[0.03] grayscale rotate-12 pointer-events-none select-none transition-transform group-hover:scale-110 duration-700"
+                                                className="absolute -bottom-6 -right-6 w-40 h-40 opacity-[0.15] rotate-12 pointer-events-none select-none transition-transform group-hover:scale-110 duration-700 mixture-blend-overlay"
                                             />
 
                                             <div className="relative z-10">
