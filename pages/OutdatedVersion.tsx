@@ -36,7 +36,7 @@ export const OutdatedVersion: React.FC = () => {
 
                         <div className="w-full space-y-4">
                             <a
-                                href="https://multiloginninjabr.lovable.app/"
+                                href="https://ninjamultilogin.vercel.app"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center gap-3 w-full py-4 px-6 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-red-950/20 transform hover:-translate-y-1 active:scale-95 group/btn"
