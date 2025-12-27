@@ -1,1 +1,1 @@
-export const VERSAO_MINIMA = 2019;
+export const VERSAO_MINIMA = 2021;
