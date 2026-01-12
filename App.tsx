@@ -15,6 +15,7 @@ import { Proxies } from './pages/Proxies';
 import { Settings } from './pages/Settings';
 import { TwoFactor } from './pages/TwoFactor';
 import { OutdatedVersion } from './pages/OutdatedVersion';
+import { Maintenance } from './pages/Maintenance';
 import { VERSAO_MINIMA } from './version';
 
 // Componentes
@@ -27,11 +28,8 @@ const App: React.FC = () => {
   // Pegamos o user e session do Redux para monitorar mudanças
   const { user, session } = useSelector((state: RootState) => state.auth);
 
-  // Verificação de Versão
-  const searchParams = new URLSearchParams(window.location.search);
-  const versionParam = searchParams.get('version');
-  const currentVersion = versionParam ? parseInt(versionParam, 10) : 0;
-  const isOutdated = isNaN(currentVersion) || currentVersion < VERSAO_MINIMA;
+  // Verificação de Versão (DESATIVADA DURANTE MANUTENÇÃO)
+  const isOutdated = false;
 
   // Referência para o canal de broadcast (para limpar depois)
   const channelRef = useRef<any>(null);
@@ -195,9 +193,7 @@ const App: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [dispatch]);
 
-  if (isOutdated) {
-    return <OutdatedVersion />;
-  }
+  return <Maintenance />;
 
   return (
     <Routes>
