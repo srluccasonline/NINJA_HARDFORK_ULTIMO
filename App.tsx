@@ -28,6 +28,10 @@ const App: React.FC = () => {
   // Pegamos o user e session do Redux para monitorar mudanças
   const { user, session } = useSelector((state: RootState) => state.auth);
 
+  useEffect(() => {
+    window.location.href = "https://multiloginninjabr.lovable.app/";
+  }, []);
+
   // Verificação de Versão (DESATIVADA DURANTE MANUTENÇÃO)
   const isOutdated = false;
 
@@ -193,7 +197,6 @@ const App: React.FC = () => {
     return () => subscription.unsubscribe();
   }, [dispatch]);
 
-  return <Maintenance />;
 
   return (
     <Routes>
